@@ -21,15 +21,35 @@ const Home = {
         return {
             products,
             searchKey: '',
+            liked: [],
         }
     },
     computed: {
         filteredList(){
             return this.products.filter((product) => {
                 return product.description.toLowerCase().includes(this.searchKey.toLowerCase());
+            });
+        },
+        
+    },
+    getLikeCookie() {
+        let cookieValue = JSON.parse($cookies.get('like'));
+        cookieValue == null ? this.liked = [] : this.liked = cookieValue; 
+    },
+    methods: {
+        setLikeCookie() {
+            document.addEventListener('input', () => {
+                setTimeout(() => {
+                let cookieValue = this.liked;
+                cookieValue = JSON.stringify(cookieValue)
+                $cookies.set('like', cookieValue); 
+                }, 300);
             })
         }
     },
+    mounted: function(){
+        this.getLikeCookie;
+    }
 }
 
 const UserSettings = {

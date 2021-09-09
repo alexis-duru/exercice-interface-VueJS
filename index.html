@@ -72,9 +72,10 @@
 
             <div class="card-icons">
               <div class="like-container">
-                <input type="checkbox" name="checkbox" v-bind:id="product.id"/>
-                <label v-bind:for="product.id"></label>
-                <i class="fas fa-heart"></i>
+                <input type="checkbox" name="checkbox" v-bind:id="product.id" :value=product.id v-model="liked" @click="setLikeCookie()"/>
+                <label v-bind:for="product.id">
+                  <i class="fas fa-heart"></i>
+                </label>
               </div>
 
               <div class="add-to-cart">
@@ -83,12 +84,12 @@
                 </button>  
               </div>
             </div>
+          </div>
 
             <!-- no result message -->
-            <div v-if="filteredList.length == []" class="no-result">
-              <h3>Désolé</h3>
-              <p>Aucun Résultat trouvé</p>
-            </div>
+          <div v-if="filteredList.length == []" class="no-result">
+            <h3>Désolé</h3>
+            <p>Aucun Résultat trouvé</p>
           </div>
         </div>
       </div>
@@ -97,6 +98,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
     <script src="./assets/js/vue.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
